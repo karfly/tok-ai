@@ -1,96 +1,116 @@
 import { defineConfig } from '@tok/generation';
 
+import ActionSlide from './custom/ActionSlide.vue';
+
+const imageStyle = 'left: 50%; top: 50%; transform: translate(-50%, -50%)';
+
 export default defineConfig({
+  theme: 'dark',
+  definePressets: {
+    action_slide: ActionSlide,
+  },
+  currencyConfig: {
+    align: 'right',
+  },
   pages: [
     {
       slides: [
         {
-          media: {
-            type: 'image',
-            src: import('./assets/img/base.png'),
-            style: 'aspect-ratio: 420/465',
-          },
-          pagination: 'count',
-          shape: 'rounded',
-          title: 'ChatGPT – the most powerful AI',
-          description: 'Now in Telegram',
-          button: 'Next',
+          extends: 'action_slide',
+          title: 'Re-dress photos with AI',
+          description: 'Tap the button below to try',
+          actionButton: ['Re-dress', 'Applied'],
+          nextButton: 'Next',
+          media: [
+            {
+              type: 'image',
+              src: import('./assets/img/1_init.webp'),
+            },
+            {
+              type: 'image',
+              src: import('./assets/img/1_res.webp'),
+            },
+          ],
         },
         {
-          media: {
-            type: 'image',
-            src: import('./assets/img/base.png'),
-            style: 'aspect-ratio: 420/465',
-          },
-          pagination: 'count',
-          shape: 'rounded',
-          title: 'Send voice messages',
-          description: 'Get instant answers',
-          button: 'Next',
+          extends: 'action_slide',
+          title: 'Ready for an important meeting?',
+          description: 'Find perfect business suit',
+          actionButton: ['Re-dress', 'Applied'],
+          nextButton: 'Next',
+          media: [
+            {
+              type: 'image',
+              src: import('./assets/img/2_init.webp'),
+            },
+            {
+              type: 'image',
+              src: import('./assets/img/2_res.webp'),
+            },
+          ],
         },
         {
-          media: {
-            type: 'image',
-            src: import('./assets/img/base.png'),
-            style: 'aspect-ratio: 420/465',
-          },
-          pagination: 'count',
-          shape: 'rounded',
-          title: 'Generate images from text',
-          description: 'Powered by OpenAI',
-          button: {
-            content: 'Next',
+          extends: 'action_slide',
+          title: "Let's go to rave party!",
+          description: 'Your friends will be impressed',
+          actionButton: ['Re-dress', 'Applied'],
+          nextButton: {
             to: '/paywall',
+            content: 'Next',
           },
+          media: [
+            {
+              type: 'image',
+              src: import('./assets/img/3_init.webp'),
+            },
+            {
+              type: 'image',
+              src: import('./assets/img/3_res.webp'),
+            },
+          ],
         },
       ],
     },
     {
-      extends: 'paywall',
+      extends: 'paywall_row',
       path: '/paywall',
       media: {
-        type: 'sticker',
-        src: import('./assets/stickers/lama_clown.tgs'),
-        style: 'width: 160px; height: 160px; margin: 0 auto',
+        type: 'image',
+        src: import('./assets/img/paywall.png'),
+        style: 'aspect-ratio: 390/251',
       },
-      title: 'Unlock PRO Features',
-      mainButtonText: 'Subscribe for {price}',
-      features: [
-        '100,000 tokens per day (50+ A4 pages)',
-        'Access to GPT-4',
-        'Voice messages',
-        'PRO Chat Modes',
-      ],
+      title: 'Purchase credits to re-dress your photos',
+      description: '1 credit = 1 photo re-dress',
+      mainButtonText: 'Buy credits for {price}',
       products: [
         {
           id: 'id1',
-          title: '12 months',
-          description: '12$/month',
-          discount: 'Discount 60%',
-          price: 144,
+          price: 4.99,
+          title: '4<br />credits',
+          description: 'Perfect to<br />start with',
         },
         {
           id: 'id2',
-          title: '1 month',
-          description: '16$/month',
-          discount: 'Discount 60%',
-          price: 16,
+          price: 8.99,
+          title: '20<br />credits',
+          description: 'Best value<br />offer',
+          bestText: 'Best&nbsp;Choice',
         },
         {
           id: 'id3',
-          title: '1 week',
-          description: '12$/month',
-          price: 12,
+          price: 19.99,
+          title: '100<br />credits',
+          description: 'For the true<br />enthusiasts',
         },
       ],
       links: [
         {
           text: 'Privacy policy',
-          href: 'https://google.com',
+          href: 'http://google.com',
         },
         {
           text: 'Terms of use',
-          href: 'https://google.com',
+          href: 'http://google.com',
         },
       ],
     },
